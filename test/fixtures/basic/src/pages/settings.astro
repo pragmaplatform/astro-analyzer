@@ -1,0 +1,21 @@
+---
+import type { User } from "../server/models"
+import { UserProfile } from "../components/UserProfile"
+
+const user = {} as User
+---
+
+<!-- astro-analyzer-ignore-next-line astro/no-server-objects -->
+<UserProfile user={user} client:load />
+<!-- astro-analyzer-ignore-next-line astro/no-server-objects -- nothing on the next line -->
+<p>Settings</p>
+{
+  [1].map(() => (
+    <div>
+      <UserProfile user={user} client:load />
+    </div>
+  ))
+}
+{
+  user && <UserProfile user={user} client:load />
+}

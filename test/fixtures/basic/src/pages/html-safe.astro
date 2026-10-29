@@ -1,0 +1,12 @@
+---
+import * as icons from "../lib/icons"
+import { CLEANED, clean, type SafeHtml } from "../lib/sanitize"
+
+const { maybe, on } = Astro.props as { maybe?: SafeHtml; on: boolean }
+---
+
+<div set:html={CLEANED} />
+<div set:html={maybe} />
+<div set:html={on ? clean("x") : null} />
+<div set:html={icons.Home} />
+<div innerHTML={maybe} />

@@ -1,0 +1,24 @@
+---
+import type { DateRange, User } from "../server/models"
+import { Untyped } from "../components/Untyped"
+import { UserCard } from "../components/UserCard"
+import { UserList } from "../components/UserList"
+import { UserProfile } from "../components/UserProfile"
+
+const user = {} as User
+const range = {} as DateRange
+const users = new Map<string, User>()
+const props = { user }
+---
+
+<UserCard user={user} client:load />
+<UserProfile user={user} client:visible />
+<Untyped data={user} client:idle />
+<UserProfile user={user} server:defer />
+<!-- astro-analyzer-ignore-next-line astro/no-server-objects -- the signed-in user's own record -->
+<UserProfile user={user} client:load />
+<UserCard user={{ id: user.id, name: user.name }} client:load />
+<UserCard user={user} />
+<UserProfile {...props} client:load />
+<UserList users={users} client:load />
+<UserProfile user={user} range={range} client:load />

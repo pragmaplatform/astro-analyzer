@@ -1,0 +1,75 @@
+{
+  "name": "astro-analyzer",
+  "version": "0.1.0",
+  "description": "Type-aware linting for Astro projects: a rule engine built on the TypeScript checker, with rules that catch server data and unsanitized HTML reaching the browser",
+  "keywords": [
+    "astro",
+    "lint",
+    "linter",
+    "static-analysis",
+    "typescript",
+    "type-aware",
+    "islands",
+    "security"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pragmaplatform/astro-analyzer.git"
+  },
+  "bugs": "https://github.com/pragmaplatform/astro-analyzer/issues",
+  "homepage": "https://github.com/pragmaplatform/astro-analyzer#readme",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "astro-analyzer": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build"
+  },
+  "dependencies": {
+    "@astrojs/compiler": "^2.13.1",
+    "@jridgewell/trace-mapping": "^0.3.31",
+    "picomatch": "^4.0.3"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.4 <7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "@types/picomatch": "^4.0.2",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.0"
+  },
+  "packageManager": "pnpm@11.28.4",
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "tabWidth": 2,
+    "trailingComma": "all"
+  }
+}

@@ -1,0 +1,18 @@
+---
+import logo from "../assets/logo.svg?raw"
+import { brand, clean } from "../lib/sanitize"
+import Panel from "../components/Panel.astro"
+
+const { body } = Astro.props as { body: string }
+const constant = "<b>hi</b>"
+const cleaned = clean(body)
+const branded = brand(body)
+---
+
+<div set:html={constant} />
+<div set:html={logo} />
+<div set:html={cleaned} />
+<div set:html={branded} />
+<div set:html={body} />
+<div set:html={`<p>${body}</p>`} />
+<Panel title="x" server:defer />
