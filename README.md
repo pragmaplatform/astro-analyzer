@@ -1,5 +1,9 @@
 # astro-analyzer
 
+[![CI](https://github.com/pragmaplatform/astro-analyzer/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pragmaplatform/astro-analyzer/actions/workflows/ci.yml)
+[![Release](https://github.com/pragmaplatform/astro-analyzer/actions/workflows/release.yml/badge.svg)](https://github.com/pragmaplatform/astro-analyzer/actions/workflows/release.yml)
+[![npm](https://img.shields.io/npm/v/astro-analyzer)](https://www.npmjs.com/package/astro-analyzer)
+
 Type-aware linting for [Astro](https://astro.build) projects.
 
 Syntactic linters see an Astro project as text, and `astro check` sees its types but only reports type errors. Many of the rules worth enforcing in an Astro codebase need both: what type a value passed to an island really has, what an action's handler returns, which component a tag resolves to and what props it declares. astro-analyzer builds one TypeScript program over your whole project, with every `.astro` file compiled to TSX the way `astro check` does, and runs rules against it with full access to the type checker.
