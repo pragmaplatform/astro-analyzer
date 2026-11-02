@@ -16,4 +16,4 @@ New built-in rules: see [Writing rules](docs/writing-rules.md#contributing-a-bui
 
 1. Update `version` in `package.json` and add a `## <version>` section to `CHANGELOG.md`.
 2. Merge to `main`, then tag the commit `v<version>` and push the tag.
-3. The `Release` workflow checks the tag matches `package.json` and that the changelog has a section for it, runs the checks through `prepublishOnly`, publishes to npm with provenance (needs the `NPM_TOKEN` secret) and creates the GitHub release with that changelog section as its notes.
+3. The `Release` workflow checks the tag matches `package.json` and that the changelog has a section for it, runs the checks through `prepublishOnly`, publishes to npm through trusted publishing (OIDC, no token; provenance is attached automatically) and creates the GitHub release with that changelog section as its notes.
