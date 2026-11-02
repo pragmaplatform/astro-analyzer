@@ -26,10 +26,8 @@ jobs:
         run: |
           awk -v version="${GITHUB_REF_NAME#v}" '/^## /{ printing = ($2 == version); next } printing' CHANGELOG.md > release-notes.md
           test -s release-notes.md || { echo "CHANGELOG.md has no '## ${GITHUB_REF_NAME#v}' section"; exit 1; }
-      - name: Publish to npm (prepublishOnly runs typecheck, test and build)
-        run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm with trusted publishing (prepublishOnly runs typecheck, test and build)
+        run: npm publish --access public
       - name: Create the GitHub release
         run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file release-notes.md
         env:
